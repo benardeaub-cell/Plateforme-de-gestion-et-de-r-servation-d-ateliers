@@ -1,8 +1,8 @@
-<?php $title = "Mes Projets - Liste des Utilisateurs"; ?>
+<?php $title = "Mes Réservations - Liste des Réservations"; ?>
 
-<h1>Liste des Utilisateurs</h1>
+<h1>Liste des Réservations</h1>
 
-<a href="index.php?controller=users&action=CreateUser"><button type="button" class="btn btn-primary">Ajouter un Utilisateur</button></a>
+<a href="index.php?controller=reservations&action=CreateReservation"><button type="button" class="btn btn-primary">Ajouter une Réservation</button></a>
 
 <table class="table">
     <thead>
@@ -15,14 +15,14 @@
     <tbody>
         <?php
         // On boucle dans le tableau $list qui contient la liste des utilisateurs
-        foreach ($list as $user) {
+        foreach ($list as $reservation) {
         echo "<tr>";
-        echo "<td>" . $user->getId_user() . "</td>";
-        echo "<td>" . $user->getName() . "</td>";
-        echo "<td>" . $user->getEmail() . "</td>";
-        echo "<td><a href='index.php?controller=users&action=ShowUser&id=" . $user->getId_user() . "'><i class='fas fa-eye'></i></a></td>";
-        echo "<td><a href='index.php?controller=users&action=UpdateUser&id=" . $user->getId_user() . "'><i class='fas fa-pen'></i></a></td>";
-        echo "<td><a href='index.php?controller=users&action=DeleteUser&id=" . $user->getId_user() . "'><i class='fas fa-trash'></i></a></td>";
+        echo "<td>" . $reservation->getId() . "</td>";
+        echo "<td>" . $reservation->getUser_name() . "</td>";
+        echo "<td>" . $reservation->getWorkshop_name() . "</td>";
+        echo "<td><a href='index.php?controller=reservations&action=ShowReservation&id=" . $reservation->getId() . "'><i class='fas fa-eye'></i></a></td>";
+        echo "<td><a href='index.php?controller=reservations&action=UpdateReservation&id=" . $reservation->getId() . "'><i class='fas fa-pen'></i></a></td>";
+        echo "<td><a href='index.php?controller=reservations&action=DeleteReservation&id=" . $reservation->getId() . "'><i class='fas fa-trash'></i></a></td>";
         echo "</tr>";
         }
         ?>

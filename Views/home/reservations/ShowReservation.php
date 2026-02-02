@@ -1,9 +1,12 @@
 <?php 
 
-$title = "Mes Projets - " . $user->getName();
+$title = "Mes Reservations - " . $reservation->getId();
 ?>
 
 <article class="row justify-content-center text-center">
-    <h1 class="col-12"><?php echo $user->getName(); ?></h1>
-    <p>Email: <?php echo $user->getEmail(); ?></p>
+    <h1 class="col-12">Réservation #<?php echo $reservation->getId(); ?></h1>
+    <p>Date: <?php echo $reservation->getDate(); ?></p>
+    <p>Utilisateur: <?php echo $reservation->getUser_name(); ?></p>
+    <p>Atelier: <?php echo $reservation->getWorkshop_name(); ?></p>
+   
 </article>

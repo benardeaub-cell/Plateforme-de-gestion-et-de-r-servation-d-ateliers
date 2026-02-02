@@ -1,10 +1,10 @@
 <?php 
 
-$title = "Mes Projets - Modification d'un Utilisateur";
+$title = "Mes Reservations - Modification d'une Réservation";
 
 ?>
 
-<h1>Modification d'un Utilisateur</h1>
+<h1>Modification d'une Réservation</h1>
 <?php
 if(!empty($erreur)){
 ?>  
@@ -17,18 +17,19 @@ if(!empty($erreur)){
 <form action="#" method="POST" enctype="multipart/form-data">
 
     <div class="mb-3">
-        <label for="name" class="form-label">Nom d'utilisateur</label>
-        <input type="text" class="form-control" id="name" name="name" value="<?php echo $user->getName(); ?>">
+        <label for="date" class="form-label">Date</label>
+        <input type="text" class="form-control" id="date" name="date" value="<?php echo $reservation->getDate(); ?>">
     </div>
 
     <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" name="email" value="<?php echo $user->getEmail(); ?>"> 
+        <label for="id_user" class="form-label">ID Utilisateur</label>
+        <input type="text" class="form-control" id="id_user" name="id_user" value="<?php echo $reservation->getUser_id(); ?>"> 
     </div>
     <div class="mb-3">
-        <label for="password" class="form-label">Mot de passe</label>
-        <input type="password" class="form-control" id="password" name="password" value="<?php echo $user->getPassword(); ?>">
+        <label for="id_workshop" class="form-label">ID Atelier</label>
+        <input type="text" class="form-control" id="id_workshop" name="id_workshop" value="<?php echo $reservation->getWorkshop_id(); ?>">
     </div>
+
     <input type="hidden" name="id_user" value="<?php echo $user->getId_user(); ?>">
     <button type="submit" class="btn btn-primary">Modifier</button>
 </form>

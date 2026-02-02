@@ -1,6 +1,6 @@
 <?php 
 
-$title = "Mes Projets - Modification d'un Utilisateur";
+$title = "Mes Utilisateurs - Modification d'un Utilisateur";
 
 ?>
 

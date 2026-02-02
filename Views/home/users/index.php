@@ -1,4 +1,4 @@
-<?php $title = "Mes Projets - Liste des Utilisateurs"; ?>
+<?php $title = "Mes Utilisateurs - Liste des Utilisateurs"; ?>
 
 <h1>Liste des Utilisateurs</h1>
 

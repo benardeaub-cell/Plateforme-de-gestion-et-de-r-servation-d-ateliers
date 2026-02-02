@@ -1,24 +1,22 @@
 <?= 
-$title = "Mes Projets - Ajout d'un Utilisateur";
+$title = "Mes Reservations - Ajout d'une Réservation";
 
 ?>
 
-<h1>Ajouter un Utilisateur</h1>
+<h1>Ajouter une Réservation</h1>
 <form action="#" method="POST" enctype="multipart/form-data">
 
     <div class="mb-3">
-        <label for="name" class="form-label">Nom d'utilisateur</label>
-        <input type="text" class="form-control" id="name" name="name">
+        <label for="date" class="form-label">Date</label>
+        <input type="text" class="form-control" id="date" name="date">
     </div>
-
     <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" name="email"> 
+        <label for="user_id" class="form-label">ID Utilisateur</label>
+        <input type="text" class="form-control" id="user_id" name="user_id">
     </div>
-
     <div class="mb-3">
-        <label for="password" class="form-label">Mot de passe</label>
-        <input type="password" class="form-control" id="password" name="password"> 
+        <label for="workshop_id" class="form-label">ID Atelier</label>
+        <input type="text" class="form-control" id="workshop_id" name="workshop_id">
     </div>
         
     

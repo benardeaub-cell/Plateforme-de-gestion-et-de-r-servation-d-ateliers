@@ -1,6 +1,6 @@
 <?php 
 
-$title = "Mes Projets - " . $user->getName();
+$title = "Mes Utilisateurs - " . $user->getName();
 ?>
 
 <article class="row justify-content-center text-center">

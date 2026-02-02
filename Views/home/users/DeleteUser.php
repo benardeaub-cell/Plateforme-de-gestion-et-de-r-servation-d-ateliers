@@ -1,4 +1,4 @@
-<?php $Title = "Mes Projets - Supprimer un Utilisateur"; ?>
+<?php $title = "Mes Utilisateurs - Supprimer un Utilisateur"; ?>
 
 <h1>Supprimer un Utilisateur</h1>
 <p>Êtes-vous sûr de vouloir supprimer l'utilisateur "<?php echo $user->getName(); ?>" ?</p>

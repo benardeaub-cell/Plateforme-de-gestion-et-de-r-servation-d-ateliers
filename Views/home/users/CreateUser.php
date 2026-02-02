@@ -1,5 +1,5 @@
 <?= 
-$title = "Mes Projets - Ajout d'un Utilisateur";
+$title = "Mes Utilisateurs - Ajout d'un Utilisateur";
 
 ?>
 
@@ -20,7 +20,16 @@ $title = "Mes Projets - Ajout d'un Utilisateur";
         <label for="password" class="form-label">Mot de passe</label>
         <input type="password" class="form-control" id="password" name="password"> 
     </div>
-        
+
+    <div class="mb-3">
+        <label for="date" class="form-label">date d'inscription</label>
+        <input type="date" class="form-control" id="date" name="date"> 
+    </div>
+
+    <div class="mb-3">
+        <label for="role" class="form-label">Rôle</label>
+        <input type="text" class="form-control" id="role" name="role"> 
+    </div>
     
     <input type="text" hidden id="hidden" name="hidden">
     <button type="submit" class="btn btn-primary">Ajouter</button>
