@@ -1,42 +1,34 @@
-<?php 
+<?php
 
 namespace workshop_platform\Core;
 
 use PDO;
-use Exception;
+use PDOException;
 
 class DbConnect {
+    private static $instance = null;
 
-protected $connection;
-protected $request;
-
-const SERVER = 'localhost';
-const USER = 'root';
-const PASSWORD = '';
-const BASE = 'workshop_platform';
-
-public function __construct(){
-
-    try {
-    $this->connection = new PDO ('mysql:host=' . self::SERVER . ';dbname=' . self::BASE, self::USER, self::PASSWORD);
-    
-    //activation des erreurs PDO
-    $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    //LEs retours de requêtes seront en tableau objet par defaut
-    $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-    
-    //Encodage des caractères spéciaux en 'utf8'
-    $this->connection->exec("SET NAMES 'utf8'");
-    
-    } catch (Exception $e) {
-        die('Erreur de connexion à la BDD : ' . $e->getMessage());
-    }
-    
+    private function __construct() {
+        // Le constructeur reste privé pour le pattern Singleton
     }
 
-    public function getConnection()
-    {
-        return $this->connection;
+    public static function getConnection(): PDO {
+        if (self::$instance === null) {
+            try {
+                self::$instance = new PDO(
+                    'mysql:host=localhost;dbname=workshop_platform;charset=utf8',
+                    'root',
+                    '',
+                    [
+                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                    ]
+                );
+            } catch (PDOException $e) {
+                die('Erreur de connexion : ' . $e->getMessage());
+            }
+        }
+        return self::$instance;
     }
+        private function __clone() {}
 }
