@@ -1,29 +1,70 @@
-<?php $title = "Mes Projets - Liste des Utilisateurs"; ?>
 
-<h1>Liste des Utilisateurs</h1>
+<h1>Liste des Ateliers</h1>
 
-<a href="index.php?controller=users&action=CreateUser"><button type="button" class="btn btn-primary">Ajouter un Utilisateur</button></a>
+<?php 
+// Message pour les utilisateurs non connectés
+if (!isset($_SESSION['user_id'])): ?>
+<h4>Vous devez être connecté pour vous inscrire</h4>
+<?php endif; ?>
+
+<?php 
+// Bouton pour ajouter un atelier (admin uniquement)
+if (isset($_SESSION['user_id']) && isset($_SESSION['id_role']) && $_SESSION['id_role'] == 3): ?>
+<a href="index.php?controller=workshops&action=create"><button type="button" class="btn btn-primary">Ajouter un Atelier</button></a>
+<?php endif; ?>
 
 <table class="table">
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Nom</th>
-            <th scope="col">Email</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Date</th>
+            <th scope="col">Places disponibles</th>
+            <th scope="col">Catégorie</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
         <?php
-        // On boucle dans le tableau $list qui contient la liste des utilisateurs
-        foreach ($list as $user) {
-        echo "<tr>";
-        echo "<td>" . $user->getId_user() . "</td>";
-        echo "<td>" . $user->getName() . "</td>";
-        echo "<td>" . $user->getEmail() . "</td>";
-        echo "<td><a href='index.php?controller=users&action=ShowUser&id=" . $user->getId_user() . "'><i class='fas fa-eye'></i></a></td>";
-        echo "<td><a href='index.php?controller=users&action=UpdateUser&id=" . $user->getId_user() . "'><i class='fas fa-pen'></i></a></td>";
-        echo "<td><a href='index.php?controller=users&action=DeleteUser&id=" . $user->getId_user() . "'><i class='fas fa-trash'></i></a></td>";
-        echo "</tr>";
+        foreach ($workshops as $workshop) {
+            echo "<tr>";
+            echo "<td>" . $workshop['id_workshop'] . "</td>";
+            echo "<td>" . htmlspecialchars($workshop['title']) . "</td>";
+            echo "<td>" . htmlspecialchars($workshop['event_date']) . "</td>";
+            echo "<td>" . $workshop['available_places'] . " / " . $workshop['total_places'] . "</td>";
+            echo "<td>" . htmlspecialchars($workshop['category_name'] ?? 'N/A') . "</td>";
+            echo "<td>";
+
+            // Si pas connecté : afficher lien de connexion
+            // Si connecté : verifier si des places sont dispo et afficher lien d'inscription
+            if (!isset($_SESSION['user_id'])) {
+                echo "<a href='index.php?controller=auth&action=login'>Sign in</a> ";
+            } else {
+                if ($workshop['available_places'] > 0) {
+                    echo "<a href='index.php?controller=reservations&action=register&workshop_id=" . $workshop['id_workshop'] . "'><i class='fas fa-user-plus'></i></a> ";
+                } else {
+                    echo "Complet";
+                }
+            }
+
+            // Si déjà inscrit afficher message de confirmation
+            if (isset($_SESSION['user_id'])) {
+                $reservationsModel = new \workshop_platform\Models\ReservationsModel();
+                if ($reservationsModel->checkReservationExists($_SESSION['user_id'], $workshop['id_workshop'])) {
+                    echo "<span title='Vous êtes déjà inscrit à cet atelier'><i class='fas fa-check-circle text-success'></i></span> ";
+                }
+
+            }
+            
+            // Liens CRUD uniquement pour les admins (id_role = 3)
+            if (isset($_SESSION['user_id']) && isset($_SESSION['id_role']) && $_SESSION['id_role'] == 3) {
+                echo "<a href='index.php?controller=workshops&action=show&id=" . $workshop['id_workshop'] . "'><i class='fas fa-eye'></i></a> ";
+                echo "<a href='index.php?controller=workshops&action=edit&id=" . $workshop['id_workshop'] . "'><i class='fas fa-pen'></i></a> ";
+                echo "<a href='index.php?controller=workshops&action=delete&id=" . $workshop['id_workshop'] . "' onclick='return confirm(\"Êtes-vous sûr ?\")'><i class='fas fa-trash'></i></a>";
+            }
+            
+            echo "</td>";
+            echo "</tr>";
         }
         ?>
     </tbody>

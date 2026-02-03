@@ -1,4 +1,10 @@
-
+<?php
+// Protection de la page : accessible uniquement aux admins
+if (!isset($_SESSION['id_role']) || $_SESSION['id_role'] != 3) {
+    header('Location: index.php?controller=home&action=index');
+    exit;
+}
+?>
 <h1>Liste des Utilisateurs</h1>
 
 <a href="index.php?controller=users&action=create"><button type="button" class="btn btn-primary">Ajouter un Utilisateur</button></a>

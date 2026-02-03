@@ -3,44 +3,40 @@
 namespace workshop_platform\Entities;
 
 class Reservations {
-    private ?int $id_reservation = null;
-    private ?string $reservation_date = null;
-    private ?int $id_user = null;
-    private ?int $id_workshop = null;
+    private $id;
+    private $user_id;
+    private $workshop_id;
+    private $reservation_date;
+    private $status;
 
-    public function getIdReservation(): ?int {
-        return $this->id_reservation;
+    public function getId() {
+        return $this->id;
     }
-
-    public function setIdReservation(int $id_reservation): self {
-        $this->id_reservation = $id_reservation;
-        return $this;
+    public function getUserId() {
+        return $this->user_id;
     }
-
-    public function getReservationDate(): ?string {
+    public function getWorkshopId() {
+        return $this->workshop_id;
+    }
+    public function getReservationDate() {
         return $this->reservation_date;
     }
-
-    public function setReservationDate(string $reservation_date): self {
+    public function getStatus() {
+        return $this->status;
+    }
+    public function setId($id) {
+        $this->id = $id;
+    }
+    public function setUserId($user_id) {
+        $this->user_id = $user_id;
+    }
+    public function setWorkshopId($workshop_id) {
+        $this->workshop_id = $workshop_id;
+    }
+    public function setReservationDate($reservation_date) {
         $this->reservation_date = $reservation_date;
-        return $this;
     }
-
-    public function getIdUser(): ?int {
-        return $this->id_user;
-    }
-
-    public function setIdUser(int $id_user): self {
-        $this->id_user = $id_user;
-        return $this;
-    }
-
-    public function getIdWorkshop(): ?int {
-        return $this->id_workshop;
-    }
-
-    public function setIdWorkshop(int $id_workshop): self {
-        $this->id_workshop = $id_workshop;
-        return $this;
+    public function setStatus($status) {
+        $this->status = $status;
     }
 }

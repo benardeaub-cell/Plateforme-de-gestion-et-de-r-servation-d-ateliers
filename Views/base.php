@@ -34,7 +34,13 @@
                             <a class="nav-link active" aria-current="page" href="/applications/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=home&action=index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/applications/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=users&action=index">Users</a>
+                            <?php
+                        if (session_status() === PHP_SESSION_NONE) {
+                            session_start();
+                        }
+                        if (isset($_SESSION['id_role']) && $_SESSION['id_role'] == 3): ?>
+                            <a class="nav-link" href="index.php?controller=users&action=index">Users</a>
+                        <?php endif; ?>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/applications/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=categories&action=index">Categories</a>

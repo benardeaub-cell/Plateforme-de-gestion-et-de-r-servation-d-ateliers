@@ -2,30 +2,33 @@
 
 namespace workshop_platform\Models;
 
-use workshop_platform\Core\DbConnect;
+use workshop_platform\Core\Db;
 
-abstract class Model {
-    protected $db;
+abstract class Model extends Db {
     protected $table;
+    protected $primaryKey = 'id';
 
     public function __construct() {
-        $this->db = DbConnect::getConnection();
+        parent::__construct(); // Appelle Db::__construct() qui initialise $this->pdo
     }
 
     public function findAll() {
-        $query = $this->db->query("SELECT * FROM {$this->table}");
+        $sql = "SELECT * FROM {$this->table}";
+        $query = $this->pdo->query($sql);
         return $query->fetchAll();
     }
 
     public function find($id) {
-        $query = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = :id");
+        $sql = "SELECT * FROM {$this->table} WHERE {$this->primaryKey} = :id";
+        $query = $this->pdo->prepare($sql);
         $query->bindValue(':id', $id);
         $query->execute();
         return $query->fetch();
     }
 
     public function delete($id) {
-        $query = $this->db->prepare("DELETE FROM {$this->table} WHERE id = :id");
+        $sql = "DELETE FROM {$this->table} WHERE {$this->primaryKey} = :id";
+        $query = $this->pdo->prepare($sql);
         $query->bindValue(':id', $id);
         return $query->execute();
     }

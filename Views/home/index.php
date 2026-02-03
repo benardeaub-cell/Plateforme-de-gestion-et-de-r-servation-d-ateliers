@@ -5,8 +5,8 @@
         <div class="col-md-12">
             <p>Bienvenue sur l'application!</p>
             <div class="mt-4">
-                <a href="index.php?controller=users&action=index" class="btn btn-primary">Voir les utilisateurs</a>
-                <a href="index.php?controller=projets&action=index" class="btn btn-secondary">Voir les projets</a>
+                <a href="index.php?controller=categories&action=index" class="btn btn-secondary">Voir les Catégories</a>
+                <a href="index.php?controller=workshops&action=index" class="btn btn-secondary">Voir les Ateliers</a>
             </div>
         </div>
     </div>

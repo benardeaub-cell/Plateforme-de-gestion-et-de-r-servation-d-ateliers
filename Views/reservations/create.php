@@ -8,12 +8,12 @@
         <input type="text" class="form-control" id="date" name="date">
     </div>
     <div class="mb-3">
-        <label for="user_id" class="form-label">ID Utilisateur</label>
-        <input type="text" class="form-control" id="user_id" name="user_id">
+        <label for="name" class="form-label">Nom Utilisateur</label>
+        <input type="text" class="form-control" id="name" name="name">
     </div>
     <div class="mb-3">
-        <label for="workshop_id" class="form-label">ID Atelier</label>
-        <input type="text" class="form-control" id="workshop_id" name="workshop_id">
+        <label for="title" class="form-label">ID Atelier</label>
+        <input type="text" class="form-control" id="title" name="title">
     </div>
         
     
