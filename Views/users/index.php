@@ -1,8 +1,7 @@
-<?php $title = "Mes Utilisateurs - Liste des Utilisateurs"; ?>
 
 <h1>Liste des Utilisateurs</h1>
 
-<a href="index.php?controller=users&action=CreateUser"><button type="button" class="btn btn-primary">Ajouter un Utilisateur</button></a>
+<a href="index.php?controller=users&action=create"><button type="button" class="btn btn-primary">Ajouter un Utilisateur</button></a>
 
 <table class="table">
     <thead>
@@ -10,19 +9,21 @@
             <th scope="col">#</th>
             <th scope="col">Nom</th>
             <th scope="col">Email</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
         <?php
-        // On boucle dans le tableau $list qui contient la liste des utilisateurs
         foreach ($list as $user) {
         echo "<tr>";
-        echo "<td>" . $user->getId_user() . "</td>";
-        echo "<td>" . $user->getName() . "</td>";
-        echo "<td>" . $user->getEmail() . "</td>";
-        echo "<td><a href='index.php?controller=users&action=ShowUser&id=" . $user->getId_user() . "'><i class='fas fa-eye'></i></a></td>";
-        echo "<td><a href='index.php?controller=users&action=UpdateUser&id=" . $user->getId_user() . "'><i class='fas fa-pen'></i></a></td>";
-        echo "<td><a href='index.php?controller=users&action=DeleteUser&id=" . $user->getId_user() . "'><i class='fas fa-trash'></i></a></td>";
+        echo "<td>" . $user['id_user'] . "</td>";
+        echo "<td>" . $user['name'] . "</td>";
+        echo "<td>" . $user['email'] . "</td>";
+        echo "<td>";
+        echo "<a href='index.php?controller=users&action=show&id=" . $user['id_user'] . "'><i class='fas fa-eye'></i></a> ";
+        echo "<a href='index.php?controller=users&action=edit&id=" . $user['id_user'] . "'><i class='fas fa-pen'></i></a> ";
+        echo "<a href='index.php?controller=users&action=delete&id=" . $user['id_user'] . "' onclick='return confirm(\"Êtes-vous sûr ?\")'><i class='fas fa-trash'></i></a>";
+        echo "</td>";
         echo "</tr>";
         }
         ?>

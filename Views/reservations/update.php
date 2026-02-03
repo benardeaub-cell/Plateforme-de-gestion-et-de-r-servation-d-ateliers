@@ -1,8 +1,3 @@
-<?php 
-
-$title = "Mes Reservations - Modification d'une Réservation";
-
-?>
 
 <h1>Modification d'une Réservation</h1>
 <?php

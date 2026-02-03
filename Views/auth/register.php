@@ -1,5 +1,4 @@
 
-// filepath: c:\wamp64\www\applications\cours-CEFii\cours-poo\workshop_platform\Views\auth\register.php
 <!DOCTYPE html>
 <html lang="fr">
 <head>

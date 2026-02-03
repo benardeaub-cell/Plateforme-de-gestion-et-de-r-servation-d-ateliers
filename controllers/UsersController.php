@@ -2,28 +2,35 @@
 
 namespace workshop_platform\Controllers;
 
-
 use workshop_platform\Controllers\Controller;
 use workshop_platform\Models\UsersModel;
 use workshop_platform\Entities\Users;
 
-
 class UsersController extends Controller {
 
     public function index() {
-        // Méthode qui permet d'afficher la liste des créations
         $users = new UsersModel();
-
-        // On stocke dans une variable le 'return' de la methode findAll()
         $list = $users->findAll();
+        $this->render('users/index', ['list' => $list, 'title' => 'Liste des utilisateurs']);
+    }
 
-        $this->render('users/index', ['list' => $list]);
+    public function show() {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $usersModel = new UsersModel();
+            $user = $usersModel->find($id);
+            
+            $this->render('users/show', ['user' => $user, 'title' => 'Détails de l\'utilisateur']);
         }
+    }
 
     public function create() {
+        // Exiger les droits admin pour supprimer
+        $this->requireAdmin();
         // Méthode qui permet d'afficher le formulaire de création
-        $this->render('users/create');
+        $this->render('users/create', ['title' => 'Créer un utilisateur']);
     }
+
 
     public function store() {
         // Méthode qui permet de stocker les données du formulaire de création
@@ -45,7 +52,11 @@ class UsersController extends Controller {
         }
     }
 
+
     public function delete() {
+
+        // Exiger les droits admin pour supprimer
+        $this->requireAdmin();
         // Méthode qui permet de supprimer un utilisateur
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
@@ -58,19 +69,26 @@ class UsersController extends Controller {
         }
     }
 
+
     public function edit() {
+        // Exiger les droits admin pour supprimer
+        $this->requireAdmin();
         // Méthode qui permet d'afficher le formulaire d'édition
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
 
             $usersModel = new UsersModel();
             $user = $usersModel->find($id);
-
-            $this->render('users/edit', ['user' => $user]);
+            
+            $this->render('users/edit', ['user' => $user, 'title' => 'Éditer un utilisateur']);
+            
         }
     }
 
+
     public function update() {
+        // Exiger les droits admin pour supprimer
+        $this->requireAdmin();
         // Méthode qui permet de mettre à jour les données d'un utilisateur
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
             $id = $_POST['id'];

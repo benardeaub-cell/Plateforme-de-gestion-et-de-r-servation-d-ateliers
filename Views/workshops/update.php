@@ -1,8 +1,4 @@
-<?php 
 
-$title = "Mes Ateliers - Modification d'un Atelier";
-
-?>
 
 <h1>Modification d'un Atelier</h1>
 <?php

@@ -1,7 +1,3 @@
-<?= 
-$title = "Mes Ateliers - Ajout d'un Atelier";
-
-?>
 
 <h1>Ajouter un Atelier</h1>
 <form action="#" method="POST" enctype="multipart/form-data">

@@ -1,4 +1,4 @@
-<?php $Title = "Mes Ateliers - Supprimer un Atelier"; ?>
+
 
 <h1>Supprimer un Atelier</h1>
 <p>Êtes-vous sûr de vouloir supprimer l'atelier "<?php echo $workshop->getTitle(); ?>" ?</p>

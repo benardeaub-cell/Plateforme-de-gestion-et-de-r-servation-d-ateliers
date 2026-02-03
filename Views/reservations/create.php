@@ -1,7 +1,4 @@
-<?= 
-$title = "Mes Reservations - Ajout d'une Réservation";
 
-?>
 
 <h1>Ajouter une Réservation</h1>
 <form action="#" method="POST" enctype="multipart/form-data">

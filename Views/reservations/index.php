@@ -2,7 +2,7 @@
 
 <h1>Liste des Réservations</h1>
 
-<a href="index.php?controller=reservations&action=CreateReservation"><button type="button" class="btn btn-primary">Ajouter une Réservation</button></a>
+<a href="index.php?controller=reservations&action=create"><button type="button" class="btn btn-primary">Ajouter une Réservation</button></a>
 
 <table class="table">
     <thead>
@@ -20,9 +20,9 @@
         echo "<td>" . $reservation->getId() . "</td>";
         echo "<td>" . $reservation->getUser_name() . "</td>";
         echo "<td>" . $reservation->getWorkshop_name() . "</td>";
-        echo "<td><a href='index.php?controller=reservations&action=ShowReservation&id=" . $reservation->getId() . "'><i class='fas fa-eye'></i></a></td>";
-        echo "<td><a href='index.php?controller=reservations&action=UpdateReservation&id=" . $reservation->getId() . "'><i class='fas fa-pen'></i></a></td>";
-        echo "<td><a href='index.php?controller=reservations&action=DeleteReservation&id=" . $reservation->getId() . "'><i class='fas fa-trash'></i></a></td>";
+        echo "<td><a href='index.php?controller=reservations&action=find&id=" . $reservation->getId() . "'><i class='fas fa-eye'></i></a></td>";
+        echo "<td><a href='index.php?controller=reservations&action=edit&id=" . $reservation->getId() . "'><i class='fas fa-pen'></i></a></td>";
+        echo "<td><a href='index.php?controller=reservations&action=delete&id=" . $reservation->getId() . "'><i class='fas fa-trash'></i></a></td>";
         echo "</tr>";
         }
         ?>

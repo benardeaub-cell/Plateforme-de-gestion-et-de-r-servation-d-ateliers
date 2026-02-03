@@ -8,7 +8,7 @@ use workshop_platform\Entities\Users;
 class AuthController extends Controller {
 
     public function login() {
-        $this->render('auth/login');
+        $this->render('auth/login', ['title' => 'Connexion']);
     }
 
     public function authenticate() {
@@ -36,7 +36,7 @@ class AuthController extends Controller {
     }
 
     public function register() {
-        $this->render('auth/register');
+        $this->render('auth/register', ['title' => 'Inscription']);
     }
 
     public function store() {

@@ -12,6 +12,12 @@ class Workshops {
     private ?int $available_places = null;
     private ?int $id_category = null;
 
+
+
+
+
+
+    
     public function getIdWorkshop(): ?int {
         return $this->id_workshop;
     }

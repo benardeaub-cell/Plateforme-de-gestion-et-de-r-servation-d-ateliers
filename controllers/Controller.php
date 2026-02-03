@@ -24,5 +24,21 @@ protected function render(string $path, array $data=[]){
     // On fabrique le "template" 
     include dirname(__DIR__) . '/Views/base.php';
 }
+protected function requireAuth() {
+    if (!isset($_SESSION['user_id'])) {
+        $_SESSION['error'] = 'Vous devez être connecté pour accéder à cette page';
+        header('Location: index.php?controller=auth&action=login');
+        exit();
+    }
+}
+
+protected function requireAdmin() {
+    $this->requireAuth();
+    if ($_SESSION['role'] !== 'admin') {
+        $_SESSION['error'] = 'Accès refusé. Droits administrateur requis.';
+        header('Location: index.php?controller=home&action=index');
+        exit();
+    }
+}
 
 }

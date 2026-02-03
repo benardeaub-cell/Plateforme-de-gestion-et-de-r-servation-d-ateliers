@@ -1,4 +1,4 @@
-<?php $Title = "Mes Reservations - Supprimer une Réservation"; ?>
+
 
 <h1>Supprimer une Réservation</h1>
 <p>Êtes-vous sûr de vouloir supprimer la réservation "<?php echo $reservation->getId(); ?>" ?</p>
