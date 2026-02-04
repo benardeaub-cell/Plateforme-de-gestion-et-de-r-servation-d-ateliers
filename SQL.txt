@@ -1,0 +1,68 @@
+Requete SQL pour la création de la BDD :
+
+CREATE DATABASE IF NOT EXISTS workshop_platform
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_general_ci;
+
+USE workshop_platform;
+
+
+CREATE TABLE roles (
+    id_role INT AUTO_INCREMENT PRIMARY KEY,
+    label VARCHAR(50) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE users (
+    id_user INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    id_role INT NOT NULL,
+    CONSTRAINT fk_users_roles
+        FOREIGN KEY (id_role)
+        REFERENCES roles(id_role)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+
+CREATE TABLE categories (
+    id_category INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+) ENGINE=InnoDB;
+
+
+CREATE TABLE workshops (
+    id_workshop INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    description TEXT NOT NULL,
+    event_date DATETIME NOT NULL,
+    total_places INT NOT NULL CHECK (total_places > 0),
+    available_places INT NOT NULL CHECK (available_places >= 0),
+    id_category INT NOT NULL,
+    CONSTRAINT fk_workshops_categories
+        FOREIGN KEY (id_category)
+        REFERENCES categories(id_category)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+
+CREATE TABLE reservations (
+    id_reservation INT AUTO_INCREMENT PRIMARY KEY,
+    reservation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    id_user INT NOT NULL,
+    id_workshop INT NOT NULL,
+    CONSTRAINT fk_reservations_users
+        FOREIGN KEY (id_user)
+        REFERENCES users(id_user)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_reservations_workshops
+        FOREIGN KEY (id_workshop)
+        REFERENCES workshops(id_workshop)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT uc_user_workshop UNIQUE (id_user, id_workshop)
+) ENGINE=InnoDB;

@@ -28,12 +28,6 @@ use workshop_platform\Entities\Users;
                 $_SESSION['role'] = $user['label'];
                 $_SESSION['id_role'] = $user['id_role']; // ATTENTION : Respecter la casse de votre BDD
                 
-                // DEBUG temporaire - vérifier ce qui est récupéré
-                // echo "<pre>";
-                // var_dump($user);
-                // echo "</pre>";
-                // echo "id_Role stocké dans session : " . $_SESSION['id_role'];
-                // exit(); // SUPPRIMER APRÈS DEBUG
 
                 header('Location: index.php?controller=home&action=index');
                 exit();

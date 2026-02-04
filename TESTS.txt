@@ -1,0 +1,86 @@
+Réapitulatif des tests effectués: 
+
+/////////////////////////////////////////////////'USER'////////////////////////////////////////////////
+
+- inscription -> OK
+
+- adresse email non valide? -> NON OK
+
+- connexion -> OK
+
+- acces page 'home' -> OK
+
+- acces page 'categories' -> OK 
+
+- choisir une catégorie -> OK 
+
+- afficher atelier selon catégorie -> OK
+
+- acces page 'workshop' -> OK
+
+- afficher tous les ateliers -> OK
+
+- trier les ateliers -> OK 
+
+- reserver une place dans un atelier -> OK
+
+- acces page 'reservations' -> OK 
+
+- afficher  reservations de l'utilisateur -> OK 
+
+- afficher detail d'une reservation -> OK
+
+- annuler reservation -> OK
+
+- deconnexion -> OK
+
+
+////////////////////////////////////////////'ADMIN'////////////////////////////////////////////////////
+
+- connexion -> OK
+
+- acces page 'home' -> OK
+
+- acces page 'users' -> OK 
+
+- afficher liste de tous les utilisateurs inscrits -> OK 
+
+- afficher detail utilisateur -> OK 
+
+- modifier utilisateur -> OK
+
+- supprimer utilisateur -> OK
+
+- acces page 'categories' -> OK 
+
+- ajouter une categorie -> OK
+
+- choisir une catégorie -> OK 
+
+- supprimer une gategorie -> OK
+
+- afficher atelier selon catégorie -> OK
+
+- acces page 'workshop' -> OK
+
+- afficher tous les ateliers -> OK
+
+- ajouter un atelier -> OK 
+
+- modifier un atelier -> OK 
+
+- supprimer un atelier -> OK 
+
+- trier les ateliers -> OK 
+
+- reserver une place dans un atelier -> OK
+
+- acces page 'reservations' -> OK 
+
+- afficher  toutes les reservation pour tous les utilisateurs - OK 
+
+- afficher detail d'une reservation -> OK
+
+- annuler reservation -> OK
+
+- deconnexion -> OK
