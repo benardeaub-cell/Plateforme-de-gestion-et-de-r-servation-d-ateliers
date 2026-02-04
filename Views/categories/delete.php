@@ -1,5 +1,3 @@
-<?php $Title = "Mes Catégories - Supprimer une Catégorie"; ?>
-
 <h1>Supprimer une Catégorie</h1>
 <p>Êtes-vous sûr de vouloir supprimer la catégorie "<?php echo $category->getName(); ?>" ?</p>
 <form action="#" method="POST">

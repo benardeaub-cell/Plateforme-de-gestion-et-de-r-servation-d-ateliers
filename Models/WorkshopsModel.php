@@ -2,7 +2,6 @@
 
 namespace workshop_platform\Models;
 
-use workshop_platform\Entities\Workshops;
 
 class WorkshopsModel extends Model {
     protected $table = 'workshops';
@@ -76,5 +75,51 @@ class WorkshopsModel extends Model {
         $query = $this->pdo->prepare($sql);
         $query->bindValue(':id', $id_workshop);
         return $query->execute();
+    }
+
+    //Recherche et tri pour utilisateur
+    public function searchAndFilter($search = '', $category = '') {
+    $sql = "SELECT w.*, c.name as category_name 
+            FROM {$this->table} w
+            LEFT JOIN categories c ON w.id_category = c.id_category
+            WHERE 1=1";
+    
+    $params = [];
+    
+    // Filtre par recherche
+    if (!empty($search)) {
+        $sql .= " AND (w.title LIKE :search OR w.description LIKE :search)";
+        $params[':search'] = '%' . $search . '%';
+    }
+    
+    // Filtre par catégorie
+    if (!empty($category)) {
+        $sql .= " AND w.id_category = :category";
+        $params[':category'] = $category;
+    }
+    
+    $sql .= " ORDER BY w.event_date ASC";
+    
+    $query = $this->pdo->prepare($sql);
+    
+    foreach ($params as $key => $value) {
+        $query->bindValue($key, $value);
+    }
+    
+    $query->execute();
+    return $query->fetchAll();
+    }
+
+    public function findUpcoming($limit = 5) {
+        $sql = "SELECT w.*, c.name as category_name
+                FROM {$this->table} w
+                LEFT JOIN categories c ON w.id_category = c.id_category
+                WHERE w.event_date >= NOW()
+                ORDER BY w.event_date ASC
+                LIMIT :limit";
+        $query = $this->pdo->prepare($sql);
+        $query->bindValue(':limit', (int)$limit, \PDO::PARAM_INT);
+        $query->execute();
+        return $query->fetchAll();
     }
 }

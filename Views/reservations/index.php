@@ -3,6 +3,7 @@
 // Affichage de la liste de toutes les réservations si connecté en admin 
 if (isset($_SESSION['id_role']) && $_SESSION['id_role'] == 3):
 ?>
+
     <h1>Liste des Réservations (Admin)</h1>
     
     <!-- Formulaire de recherche et filtres -->
@@ -85,6 +86,7 @@ if (isset($_SESSION['id_role']) && $_SESSION['id_role'] == 3):
                 <th>Actions</th>
             </tr>
         </thead>
+        
         <tbody>
             <?php foreach ($reservations as $reservation): ?>
                 <tr>
@@ -122,5 +124,11 @@ if (isset($_SESSION['id_role']) && $_SESSION['id_role'] == 3):
                 </tr>
             <?php endforeach; ?>
         </tbody>
+
     </table>
+
+<?php endif;
+// Bouton vers la liste des ateliers si utilisateur
+if (!isset($_SESSION['id_role']) || $_SESSION['id_role'] != 3): ?>
+    <a href="index.php?controller=workshops&action=index" class="btn btn-primary">Retourner  la liste des ateliers</a>
 <?php endif; ?>

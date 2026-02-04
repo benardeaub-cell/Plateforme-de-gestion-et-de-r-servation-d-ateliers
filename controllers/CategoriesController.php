@@ -1,48 +1,113 @@
 <?php 
 
-namespace workshop_platform\Entities;
+namespace workshop_platform\Controllers;
 
-class Categories {
-    private $id_category;
-    private $name;
-    private $description;
-    private $created_at;
-    public function __construct($id_category, $name, $description, $created_at) {
-        $this->id_category = $id_category;
-        $this->name = $name;
-        $this->description = $description;
-        $this->created_at = $created_at;
+use workshop_platform\Controllers\Controller;
+use workshop_platform\Models\CategoriesModel;
+
+class CategoriesController extends Controller {
+
+    // Afficher la liste des catégories
+    public function index() {
+        $categoriesModel = new CategoriesModel();
+        $categories = $categoriesModel->findAll();
+
+        $this->render('categories/index', [
+            'title' => 'Liste des Catégories',
+            'list' => $categories
+        ]);
     }
 
-    public function getIdCategory() {
-        return $this->id_category;
+    // Afficher une catégorie spécifique
+    public function show() {
+        if (isset($_GET['id'])) {
+            $categoriesModel = new CategoriesModel();
+            $categoryData = $categoriesModel->find($_GET['id']);
+
+            if ($categoryData) {
+                $category = new \workshop_platform\Entities\Categories();
+                $category->setid_category($categoryData['id_category']);
+                $category->setName($categoryData['name']);
+
+                $this->render('categories/show', [
+                    'title' => 'Détails de la Catégorie',
+                    'category' => $category
+                ]);
+            }
+        }
     }
 
-    public function setIdCategory($id_category) {
-        $this->id_category = $id_category;
+    public function create() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $category = new \workshop_platform\Entities\Categories();
+            $category->setName($_POST['name']);
+            
+
+            $categoriesModel = new CategoriesModel();
+            $categoriesModel->create($category);
+
+            header('Location: index.php?controller=categories&action=index');
+        } else {
+            $this->render('categories/create', [
+                'title' => 'Ajouter une Catégorie'
+            ]);
+        }
     }
 
-    public function getName() {
-        return $this->name;
+    public function edit() {
+        $categoriesModel = new CategoriesModel();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $category = new \workshop_platform\Entities\Categories();
+            $category->setName($_POST['name']);
+            
+
+            $categoriesModel->update($_GET['id'], $category);
+
+            header('Location: index.php?controller=categories&action=index');
+        } else {
+            $categoryData = $categoriesModel->find($_GET['id']);
+
+            if ($categoryData) {
+                $category = new \workshop_platform\Entities\Categories();
+                $category->setid_category($categoryData['id_category']);
+                $category->setName($categoryData['name']);
+
+                $this->render('categories/edit', [
+                    'title' => 'Modifier la Catégorie',
+                    'category' => $category
+                ]);
+            }
+        }
     }
 
-    public function setName($name) {
-        $this->name = $name;
+    public function delete() {
+        $categoriesModel = new CategoriesModel();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $categoriesModel->delete($_GET['id']);
+            header('Location: index.php?controller=categories&action=index');
+        } else {
+            $categoryData = $categoriesModel->find($_GET['id']);
+
+            if ($categoryData) {
+                $category = new \workshop_platform\Entities\Categories();
+                $category->setid_category($categoryData['id_category']);
+                $category->setName($categoryData['name']);
+
+                $this->render('categories/delete', [
+                    'title' => 'Supprimer la Catégorie',
+                    'category' => $category
+                ]);
+            }
+        }
     }
 
-    public function getDescription() {
-        return $this->description;
+    public function list() {
+        $categoriesModel = new CategoriesModel();
+        return $categoriesModel->findAll();
     }
 
-    public function getCreatedAt() {
-        return $this->created_at;
-    }
-
-    public function setDescription($description) {
-        $this->description = $description;
-    }
     
-    public function setCreatedAt($created_at) {
-        $this->created_at = $created_at;
-    }
+
 }

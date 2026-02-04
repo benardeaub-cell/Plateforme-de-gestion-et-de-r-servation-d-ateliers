@@ -1,9 +1,3 @@
-<?php 
-
-$title = "Mes Catégories - Modification d'une Catégorie";
-
-?>
-
 <h1>Modification d'une Catégorie</h1>
 <?php
 if(!empty($erreur)){

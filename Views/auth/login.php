@@ -13,18 +13,25 @@
         <?php unset($_SESSION['error']); ?>
     <?php endif; ?>
     
+    <?php 
+    // Affichage d'un message de succès après l'inscription
+    if (isset($_SESSION['success'])): ?>
+        <p style="color: green;"><?= $_SESSION['success'] ?></p>
+        <?php unset($_SESSION['success']); ?>
+    <?php endif; ?>
+
     <form action="index.php?controller=auth&action=authenticate" method="POST">
-        <div>
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
         </div>
-        
-        <div>
-            <label for="password">Mot de passe :</label>
-            <input type="password" id="password" name="password" required>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Mot de passe</label>
+            <input type="password" class="form-control" id="password" name="password" required>
         </div>
-        
-        <button type="submit">Se connecter</button>
+
+        <button type="submit" class="btn btn-primary">Se connecter</button>
     </form>
     
     <p>Pas encore de compte ? <a href="index.php?controller=auth&action=register">S'inscrire</a></p>

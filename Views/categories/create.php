@@ -1,7 +1,4 @@
-<?= 
-$title = "Mes Catégories - Ajout d'une Catégorie";
 
-?>
 
 <h1>Ajouter une Catégorie</h1>
 <form action="#" method="POST" enctype="multipart/form-data">
@@ -14,3 +11,4 @@ $title = "Mes Catégories - Ajout d'une Catégorie";
     
     <input type="text" hidden id="hidden" name="hidden">
     <button type="submit" class="btn btn-primary">Ajouter</button>
+</form>

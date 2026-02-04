@@ -12,12 +12,7 @@ class Workshops {
     private ?int $available_places = null;
     private ?int $id_category = null;
 
-
-
-
-
-
-    
+  
     public function getIdWorkshop(): ?int {
         return $this->id_workshop;
     }
@@ -26,9 +21,6 @@ class Workshops {
         $this->id_workshop = $id_workshop;
         return $this;
     }
-
-
-
 
 
 
@@ -43,10 +35,6 @@ class Workshops {
 
 
 
-
-
-
-
     public function getDescription(): ?string {
         return $this->description;
     }
@@ -55,10 +43,6 @@ class Workshops {
         $this->description = $description;
         return $this;
     }
-
-
-
-
 
 
 
@@ -73,10 +57,6 @@ class Workshops {
 
 
 
-
-
-
-
     public function getTotalPlaces(): ?int {
         return $this->total_places;
     }
@@ -88,10 +68,6 @@ class Workshops {
 
 
 
-
-
-
-
     public function getAvailablePlaces(): ?int {
         return $this->available_places;
     }
@@ -100,10 +76,6 @@ class Workshops {
         $this->available_places = $available_places;
         return $this;
     }
-
-
-
-
 
 
     

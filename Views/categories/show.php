@@ -1,9 +1,13 @@
 <?php 
-
-$title = "Mes Catégories - " . $category->getName();
+// Détails d'une catégorie
 ?>
 
-<article class="row justify-content-center text-center">
-    <h1 class="col-12"><?php echo $category->getName(); ?></h1>
-    <p>Email: <?php echo $category->getEmail(); ?></p>
-</article>
+<h1>Détails de la Catégorie</h1>
+<table class="table">
+    
+    <tr>
+        <th>Nom</th>
+        <td><?php echo htmlspecialchars($category->getName()); ?></td>
+    </tr>
+</table>
+<a href="index.php?controller=categories&action=index"><button type="button" class="btn btn-secondary">Retour à la liste des catégories</button></a>
