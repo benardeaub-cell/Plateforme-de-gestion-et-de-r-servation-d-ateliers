@@ -5,6 +5,9 @@ namespace workshop_platform\Controllers;
 
 use workshop_platform\Models\UsersModel;
 use workshop_platform\Entities\Users;
+use workshop_platform\Controllers\Controller;
+
+
 
 
 
@@ -43,22 +46,68 @@ use workshop_platform\Entities\Users;
     public function register() {
         $this->render('auth/register', ['title' => 'Inscription']);
     }
-    public function store() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+     public function store() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: index.php?controller=auth&action=register');
+            exit();
+        }
 
-            $user = new Users();
-            $user->setName($name);
-            $user->setEmail($email);
-            $user->setPassword($password);
-            $user->setId_role(2); // 2 = user
+        if (session_status() === PHP_SESSION_NONE) session_start();
 
+        $name = trim($_POST['name'] ?? '');
+        $emailRaw = trim($_POST['email'] ?? '');
+        $passwordRaw = $_POST['password'] ?? '';
+
+        $errors = [];
+
+        // CSRF check (si token présent)
+        if (!isset($_POST['csrf']) || !hash_equals($_SESSION['csrf_token'] ?? '', $_POST['csrf'])) {
+            $errors['general'] = 'Requête invalide (csrf).';
+        }
+
+        // Validation basique
+        if ($name === '' || mb_strlen($name) < 2 || mb_strlen($name) > 30) {
+            $errors['name'] = 'Nom requis (2 à 30 caractères).';
+        }
+
+        if ($emailRaw === '' || !filter_var($emailRaw, FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = 'Email invalide.';
+        } else {
             $usersModel = new UsersModel();
-            $usersModel->create($user);
+            if ($usersModel->findByEmail($emailRaw)) {
+                $errors['email'] = 'Cet email est déjà utilisé.';
+            }
+        }
 
+        if ($passwordRaw === '' || mb_strlen($passwordRaw) < 6) {
+            $errors['password'] = 'Mot de passe trop court (min 6 caractères).';
+        }
+
+        if (!empty($errors)) {
+            $_SESSION['errors'] = $errors;
+            $_SESSION['old'] = ['name' => $name, 'email' => $emailRaw];
+            header('Location: index.php?controller=auth&action=register');
+            exit();
+        }
+
+        $password = password_hash($passwordRaw, PASSWORD_BCRYPT);
+
+        $user = new Users();
+        $user->setName($name);
+        $user->setEmail($emailRaw);
+        $user->setPassword($password);
+        $user->setId_role(2);
+
+        try {
+            $usersModel->create($user);
+            $_SESSION['success'] = 'Compte créé avec succès. Vous pouvez vous connecter.';
             header('Location: index.php?controller=auth&action=login');
+            exit();
+        } catch (\Exception $e) {
+            // log($e) en production
+            $_SESSION['errors'] = ['general' => 'Erreur serveur, réessayez plus tard.'];
+            $_SESSION['old'] = ['name' => $name, 'email' => $emailRaw];
+            header('Location: index.php?controller=auth&action=register');
             exit();
         }
     }
@@ -68,4 +117,10 @@ use workshop_platform\Entities\Users;
         header('Location: index.php?controller=home&action=index');
         exit();
     }
+
+    
+
+
+    
+    
 }
