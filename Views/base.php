@@ -10,7 +10,12 @@
     <title><?= isset($title) ? htmlspecialchars($title) : 'Workshop Platform' ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="style.css">
+    <!-- Lien vers votre fichier CSS personnalisé -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <!-- Lien vers fichier JavaScript personnalisé -->
+    <script defer src="<?= BASE_URL ?>assets/js/script.js"></script>
+    
     <script src="https://kit.fontawesome.com/cff33ecd93.js" crossorigin="anonymous"></script>
 </head>
 

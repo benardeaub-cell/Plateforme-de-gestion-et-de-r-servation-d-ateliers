@@ -1,4 +1,6 @@
 <?php
+
+define('BASE_URL', str_replace('\\','/', dirname($_SERVER['SCRIPT_NAME'])) . '/');
 session_start();
 
 // Activer l'affichage des erreurs

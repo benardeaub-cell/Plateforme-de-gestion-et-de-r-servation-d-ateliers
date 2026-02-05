@@ -1,14 +1,7 @@
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Inscription</title>
-</head>
-<body>
     <h1>Créer un compte</h1>
       
-    <form action="index.php?controller=auth&action=store" method="POST" class="needs-validation" novalidate>
+    <form action="index.php?controller=auth&action=store" method="POST" class="needs-validation" id="registerForm" novalidate>
         <div class="mb-3">
             <label for="name" class="form-label">Nom :</label>
             <input type="text" class="form-control" id="name" name="name" required>

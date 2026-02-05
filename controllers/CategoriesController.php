@@ -42,6 +42,7 @@ class CategoriesController extends Controller {
             $category = new \workshop_platform\Entities\Categories();
             $category->setName($_POST['name']);
             
+            
 
             $categoriesModel = new CategoriesModel();
             $categoriesModel->create($category);
