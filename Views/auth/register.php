@@ -33,4 +33,3 @@ unset($_SESSION['errors'], $_SESSION['old']);
 
     <button type="submit" class="btn btn-primary">S'inscrire</button>
 </form>
-// ...existing code...

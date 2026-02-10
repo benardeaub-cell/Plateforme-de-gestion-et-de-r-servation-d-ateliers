@@ -27,7 +27,7 @@
         </header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/applications/cours-CEFii/cours-poo/workshop_platform/public/index.php"><?= isset($title) ? htmlspecialchars($title) : 'Workshop Platform' ?></a>
+                <a class="navbar-brand" href="/cours-CEFii/cours-poo/workshop_platform/public/index.php"><?= isset($title) ? htmlspecialchars($title) : 'Workshop Platform' ?></a>
                 <button class="navbar-toggler" type="button" 
                 data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" 
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/applications/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=home&action=index">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=home&action=index">Home</a>
                         </li>
                         <li class="nav-item">
                             <?php
@@ -48,26 +48,26 @@
                         <?php endif; ?>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/applications/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=categories&action=index">Categories</a>
+                            <a class="nav-link" href="/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=categories&action=index">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/applications/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=workshops&action=index">Workshops</a>
+                            <a class="nav-link" href="/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=workshops&action=index">Workshops</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/applications/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=reservations&action=index">Reservations</a>
+                            <a class="nav-link" href="/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=reservations&action=index">Reservations</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <?php if (isset($_SESSION['user_id'])): ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="/applications/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=auth&action=logout">Logout (<?= htmlspecialchars($_SESSION['name']) ?>)</a>
+                                <a class="nav-link" href="/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=auth&action=logout">Logout (<?= htmlspecialchars($_SESSION['name']) ?>)</a>
                             </li>
                         <?php else: ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="/applications/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=auth&action=login">Login</a>
+                                <a class="nav-link" href="/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=auth&action=login">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/applications/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=auth&action=register">Register</a>
+                                <a class="nav-link" href="/cours-CEFii/cours-poo/workshop_platform/public/index.php?controller=auth&action=register">Register</a>
                             </li>
                         <?php endif; ?>
                     </ul>
