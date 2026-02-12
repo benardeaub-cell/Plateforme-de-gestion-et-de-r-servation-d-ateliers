@@ -53,16 +53,25 @@ class WorkshopsController extends Controller {
             $workshop->setIdCategory($_POST['id_category']);
             
             $model = new WorkshopsModel();
-            $model->create($workshop);
-            header('Location: index.php?controller=workshops&action=index');
+            $lastWorkshopId = $model->create($workshop);
+            $lastWorkshop = $model->find($lastWorkshopId);
+            
+            // header('Location: index.php?controller=workshops&action=index');
+            header('Content-Type: application/json');
+            $jsonResponse = [
+                'success' => true,
+                'message' => 'Atelier créé avec succès',
+                'workshop' => $lastWorkshop
+            ];
+            echo json_encode($jsonResponse);
         } else {
             $categoriesModel = new CategoriesModel();
             $categories = $categoriesModel->findAll();
             $this->render('workshops/create', compact('categories'));
         }
     }
-
-    // Méthode pour éditer un workshop
+            
+    // Méthode pour éditer un workshop en JSON sur POST AJAX
     public function edit() {
     $model = new WorkshopsModel();
     
@@ -80,7 +89,13 @@ class WorkshopsController extends Controller {
         $workshop->setIdCategory($_POST['id_category']);
         
         $model->update($_GET['id'], $workshop);
-        header('Location: index.php?controller=workshops&action=index');
+        header('Content-Type: application/json');
+        $jsonResponse = [
+            'success' => true,
+            'message' => 'Atelier modifié avec succès',
+            'workshop' => $workshop
+        ];
+        echo json_encode($jsonResponse);
         exit;
     } else {
         $workshop = $model->find($_GET['id']);
@@ -106,6 +121,16 @@ class WorkshopsController extends Controller {
             $model = new WorkshopsModel();
             $workshops = $model->findByCategory($_GET['id']);
             $this->render('workshops/index', compact('workshops'));
+        }
+    }
+
+    //Récupération des données de la modal pour l'encodage en JSON
+    public function getWorkshopData() {
+        if (isset($_GET['id'])) {
+            $model = new WorkshopsModel();
+            $workshop = $model->find($_GET['id']);
+            header('Content-Type: application/json');
+            echo json_encode($workshop);
         }
     }
 }

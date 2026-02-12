@@ -1,0 +1,132 @@
+/* Overlay */
+.modal-overlay,
+.modal-overlay-add,
+.modal-overlay-edit {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /* cachée par défaut */
+    align-items: center;
+    justify-content: center;
+    z-index: 2000; /* au-dessus de Bootstrap */
+}
+
+/* visible quand on ajoute la classe */
+.modal-overlay.is-visible,
+.modal-overlay-add.is-visible,
+.modal-overlay-edit.is-visible {
+    display: flex;
+}
+
+/* Modal box */
+#workshopModal {
+    background-color: #ffffff;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 500px;
+    padding: 1.5rem;
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.15);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Title */
+#workshopModal h2 {
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #212529;
+}
+
+/* Form layout */
+#form-add-atelier,
+#form-edit-atelier {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Labels */
+#form-add-atelier label,
+#form-edit-atelier label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #495057;
+}
+
+/* Inputs & textarea */
+#form-add-atelier input,
+#form-add-atelier textarea,
+#form-edit-atelier input,
+#form-edit-atelier textarea,
+#form-edit-atelier select {
+    margin-top: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Focus state */
+#form-add-atelier input:focus,
+#form-add-atelier textarea:focus,
+#form-edit-atelier input:focus,
+#form-edit-atelier textarea:focus,
+#form-edit-atelier select:focus {
+    outline: none;
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Textarea */
+#form-add-atelier textarea,
+#form-edit-atelier textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Actions */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Buttons */
+.modal-actions button {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Primary button */
+.modal-actions button[type="submit"] {
+    background-color: #0d6efd;
+    color: #ffffff;
+    border-color: #0d6efd;
+}
+
+.modal-actions button[type="submit"]:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+/* Secondary button */
+#closeModal,
+#closeModalEdit {
+    background-color: #f8f9fa;
+    color: #212529;
+    border-color: #ced4da;
+}
+
+#closeModal:hover,
+#closeModalEdit:hover {
+    background-color: #e9ecef;
+}

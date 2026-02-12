@@ -80,4 +80,45 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-// ...existing code...
+
+
+// Ajout modal de formulaire d'ajout d'atelier
+document.addEventListener('DOMContentLoaded', function () {
+    const overlay = document.querySelector('.modal-overlay-add');
+    const openBtn = document.getElementById('btn-add-atelier');
+    const closeBtn = document.getElementById('closeModal');
+
+    function closeModal() {
+        if (!overlay) {
+            return;
+        }
+        overlay.classList.remove('is-visible');
+        overlay.setAttribute('hidden', '');
+        overlay.setAttribute('aria-hidden', 'true');
+    }
+    
+
+    if (openBtn && overlay) {
+        openBtn.addEventListener('click', () => {
+            overlay.classList.add('is-visible');
+            overlay.removeAttribute('hidden');
+            overlay.setAttribute('aria-hidden', 'false');
+        });
+    }
+    if (closeBtn && overlay) {
+        closeBtn.addEventListener('click', () => {
+            overlay.classList.remove('is-visible');
+            overlay.setAttribute('hidden', '');
+            overlay.setAttribute('aria-hidden', 'true');
+        });
+    }
+
+    if (!overlay) {
+        return;
+    }
+
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+});
+
+ 

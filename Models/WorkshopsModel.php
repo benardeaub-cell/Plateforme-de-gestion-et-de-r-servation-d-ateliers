@@ -42,9 +42,11 @@ class WorkshopsModel extends Model {
         $query->bindValue(':description', $workshop->getDescription());
         $query->bindValue(':event_date', $workshop->getEventDate());
         $query->bindValue(':total_places', $workshop->getTotalPlaces());
-        $query->bindValue(':available_places', $workshop->getTotalPlaces()); // Initialement égal au total
+        $query->bindValue(':available_places', $workshop->getTotalPlaces());
         $query->bindValue(':id_category', $workshop->getIdCategory());
-        return $query->execute();
+        $query->execute();
+        return $this->pdo->lastInsertId();
+
     }
 
     public function update($id, $workshop) {
@@ -122,4 +124,5 @@ class WorkshopsModel extends Model {
         $query->execute();
         return $query->fetchAll();
     }
+
 }
